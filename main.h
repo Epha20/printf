@@ -1,42 +1,47 @@
-#ifndef _PRINT_FUNCTION_H_
-#define _PRINT_FUNCTION_H_
+#ifndef MAIN_H
+#define MAIN_H
 #include <stdarg.h>
-
-int _printf(const char *format, ...);
-int pull_print(char c, va_list *ap);
-
-int _putchar(char);
-int buffer(char a, char *s);
-int p_bin(unsigned int num);
-int exponent(int x, int y);
-int p_int(int);
-int p_string(char *);
-int p_hexstring(char *);
-int p_rev(char *s);
-int p_hexcap(unsigned int num);
-int p_octal(unsigned int num);
-int p_uint(unsigned int num);
-int p_hex(unsigned int num);
-
-int mkstring(va_list *);
-int mkchar(va_list *);
-int mkint(va_list *);
-int mkbin(va_list *);
-int mkhex(va_list *);
-int mkhexcap(va_list *);
-int mkoctal(va_list *);
-int mkhexstring(va_list *);
-int mkunsigned(va_list *);
-
+#include <stdio.h>
 /**
- * struct flag -flag object
- * @letter: flag char
- * @prnt: print function pointer
- * Descriptions: contains flag letter and corresponding print function
- **/
-typedef struct flag
+ * struct vtype - struct vtype
+ * @tp: tp
+ * @f: function
+ *
+ */
+typedef struct vtype
 {
-	char letter;
-	int (*prnt)(va_list *);
-} find_flag;
+	char tp;
+	void (*f)();
+} vtype_t;
+int _printf(const char *format, ...);
+void print_char(va_list valist);
+void print_int(va_list valist);
+void print_float(va_list valist);
+void print_string(va_list valist);
+void _write_buffer(char *buffer, int *index);
+int _strlen(char *s);
+char *_memcpy(char *dest, char *src, unsigned int n);
+void format_s(va_list valist, char *buffer, int *index);
+void format_c(va_list valist, char *buffer, int *index);
+void format_d(va_list valist, char *buffer, int *index);
+char *itos(char str[], long int num);
+char *utos(char str[], int num);
+int num_len(int num);
+int float_len(double f);
+void format_i(va_list valist, char *buffer, int *index);
+void format_u(va_list valist, char *buffer, int *index);
+void format_perc(va_list valist, char *buffer, int *index);
+void format_p(va_list valist, char *buffer, int *index);
+void format_lx(va_list valist, char *buffer, int *index);
+char *tostring(char str[], int num);
+int num_len(int num);
+void reset_buffer(char buffer[]);
+void *rot13(char *s);
+void rev_string(char *s);
+void format_h(va_list valist, char *buffer, int *index);
+void format_ch(va_list valist, char *buffer, int *index);
+void format_o(va_list valist, char *buffer, int *index);
+void format_b(va_list valist, char *buffer, int *index);
+void format_r(va_list valist, char *buffer, int *index);
+void format_R(va_list valist, char *buffer, int *index);
 #endif

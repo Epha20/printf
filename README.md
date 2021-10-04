@@ -1,31 +1,15 @@
-acting as a flag:
-
-##Flag   Output
-
-%c     char
-%s     string
-%S     string, replace any unprintable chars as \xXXX where XXX is a hex with
-       caps, must be at least two digits
-%d/%i  int
-%o     unsigned int as octal
-%u     unsigned decimal int
-%x     unsigned int as hex with lowercase letters
-%X     unsigned int as hex with uppercase letters
-%b     unsigned int as binary
-
-##Example and output
-
- int main(void)
- {
- _printf("%s\nprint a char: %c\nthis is an int: %d\nand an octal: %o\n",
- "this is a string", 'A', 98, 98);
-
-return (0);
-}
-
-OUTPUT
-
-this is a string
-print a char: A
-this is an int: 98
-and an octal: 142
+Printf
+Objective:Recreate the C library printf
+Requirements:
+Files should be compiled with gcc 4.8.4
+No more than 5 functions per file
+Files should end with a new line
+No global variables allowed
+_printf
+this function prints an individual character (similar to standard library printf)
+printf
+The core function where the buffer is defined and freed. All other functions are called from here
+main.h
+Header file that contains prototypes for all the functions and a struct holding a function and a character
+man_3_printf
+Custom man page Create a man page for your function.
