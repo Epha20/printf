@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 			else if (format[i] == 'd' || format[i] == 'i')
 				chars_printed += print_num(va_arg(args, int));
 			else if (format[i] == 'b')
-				chars_printed += print_binary((unsigned int)va_arg(args, int));
+				chars_printed += print_bin((unsigned int)va_arg(args, int));
 			else if (format[i] == 'r')
 				chars_printed += print_reverse(va_arg(args, char *));
 			else if (format[i] == 'R')
