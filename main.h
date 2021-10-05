@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-
 int _putchar(char c);
 int _printf(const char *format, ...);
 int print_num(long int n);
@@ -20,4 +19,4 @@ int print_reverse(char *s);
 int print_rot13(char *c);
 int print_pointer(void *p);
 
-#endif /* MAIN_H */
+#endif
