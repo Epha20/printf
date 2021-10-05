@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * print_bin - converts an unsigned int to binary
+ * print_binary - converts an unsigned int to binary
  * @num: int to be converted
  *
  * Return: no of resulting binary characters
  */
-int print_bin(unsigned int num)
+int print_binary(unsigned int num)
 {
 	int chars_printed = 0, idx = 0;
 	char bin[sizeof(unsigned int) * 8];
