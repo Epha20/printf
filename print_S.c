@@ -26,7 +26,7 @@ int print_S(char *str)
 		{
 			chars_printed += _putchar(c);
 		}
-          	i++;
+		i++;
 	}
 	return (chars_printed);
 }
