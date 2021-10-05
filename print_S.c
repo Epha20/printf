@@ -14,6 +14,7 @@ int print_S(char *str)
 	while (str[i])
 	{
 		c = str[i];
+
 		if ((c > 0 && c  < 32) || c >= 127)
 		{
 			chars_printed += _putchar('\\');
@@ -25,7 +26,7 @@ int print_S(char *str)
 		{
 			chars_printed += _putchar(c);
 		}
-          		i++;
+          	i++;
 	}
 	return (chars_printed);
 }
