@@ -1,151 +1,37 @@
 #include "main.h"
 
-
 /**
- * rot_13 - convert ROT13 to text
- * @list: argument
+ * print_binary - converts an unsigned int to binary
+ * @num: int to be converted
  *
- * Return: number of characters to be print
+ * Return: no of resulting binary characters
  */
-
-int rot_13(va_list list)
+int print_binary(unsigned int num)
 {
-	char ch[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char chs[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	unsigned int i = 0, j = 0;
-	int s;
-	char *str;
+	int chars_printed = 0, idx = 0;
+	char bin[sizeof(unsigned int) * 8];
 
-	s = 0;
-	str = va_arg(list, char *);
-	if (str == NULL)
-		str = "(NULL)";
-	for (i = 0; str[i] != '\0'; i++)
+	if (num == 0)
 	{
-		for (j = 0; ch[j] != '\0'; j++)
-		{
-			if (ch[j] == str[i])
-			{
-				_putchar(chs[j]);
-				s++;
-				break;
-			}
-		}
-		if (ch[j] == '\0')
-		{
-			_putchar(str[i]);
-			s++;
-		}
+		chars_printed += _putchar('0');
+		return (chars_printed);
 	}
-	return (s);
-}
-
-/**
- * print_octal - prints the octal representation of a decimal number
- * @list: argument
- *
- * Return: number of characters printed
- */
-
-int print_octal(va_list list)
-{
-	int j = 0;
-	unsigned int num = va_arg(list, unsigned int);
-	int arr[sizeof(int) * 8 + 1];
-	int i = 0;
-
-	if (num < 8)
+	if (num == 1)
 	{
-		_putchar(num + '0');
-		j++;
-		return (j);
+		chars_printed += _putchar('1');
+		return (chars_printed);
 	}
-
-	else
+	while (num > 0)
 	{
-		while (num > 8)
-		{
-			arr[i] = num % 8;
-			num /= 8;
-			i++;
-		}
-
-		if (num < 8)
-			arr[i] = num;
-
-		while (i >= 0)
-		{
-			_putchar(arr[i] + '0');
-			j++;
-			i--;
-		}
+		bin[idx] = '0' + (num % 2);
+		num = num / 2;
+		idx++;
 	}
-	return (j);
-}
-
-
-/**
- * print_unint - prints an unsigned int number
- * @list: argument
- *
- * Return: number of characters printed
- */
-
-int print_unint(va_list list)
-{
-	int i = 0;
-	unsigned int num = va_arg(list, unsigned int);
-	int j = 1;
-
-	while (num / j > 9)
+	idx--;
+	while (idx >= 0)
 	{
-		j *= 10;
+		chars_printed += _putchar(bin[idx]);
+		idx--;
 	}
-
-	while (j > 0)
-	{
-		_putchar(num / j + '0');
-		i++;
-		num %= j;
-		j /= 10;
-	}
-	return (i);
-}
-
-
-
-/**
- * binary_recursive - numbers in binary in recursive
- * @num: number to print
- * @len: lenght of digit to print
- *
- * Return: length on success, -1 if NULL
- */
-
-int binary_recursive(unsigned int num, int len)
-{
-	if (num / 2)
-		len = binary_recursive((num / 2), (len + 1));
-	_putchar(num % 2 + '0');
-
-	return (len);
-}
-
-
-
-/**
- * print_binary - convert unsigned int to binary
- * @list: int to convert
- *
- * Return: integer
- */
-
-int print_binary(va_list list)
-{
-	int len = 0;
-
-	unsigned int num = va_arg(list, unsigned int);
-
-	len = binary_recursive(num, len) + 1;
-	return (len);
+	return (chars_printed);
 }

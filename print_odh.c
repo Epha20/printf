@@ -1,80 +1,59 @@
 #include "main.h"
 
+/**
+ * dec_to_oct - converts decimal to octal notation
+ *
+ * @num: number to be converted
+ * Return: characters printed
+ */
+int dec_to_oct(unsigned int num)
+{
+	int chars_printed = 0;
+
+	if (!num)
+		return (0);
+	chars_printed += (dec_to_oct(num / 8));
+	chars_printed += _putchar('0' + num % 8);
+	return (chars_printed);
+}
 
 /**
- * _hex_str - converts the number from base 10 to hex
- * @n: number to be converted
- * @hex: base of 16 being passed
- * @alpha: Char 'A' to 'F' or 'a' to 'f'
- * Return: number of chars printed
+ * dec_to_hex - converts decimal to hexadecimal notation
+ *
+ * @c: letter case specifier
+ * @num: number to be converted
+ * Return: characters printed
  */
-int _hex_str(unsigned int n, unsigned int hex, char alpha)
+int dec_to_hex(char c, unsigned int num)
 {
-	unsigned int a = n % hex;
-	unsigned int b = n / hex;
-	char c;
+	int chars_printed = 0;
 
-	if (a > 10)
-		c = (a - 10) + alpha;
+	if (!num)
+		return (0);
+	chars_printed += dec_to_hex(c, num / 16);
+	if (num % 16 < 10)
+		chars_printed += _putchar('0' + num % 16);
+	else if (num % 16 > 9 && c == 'x')
+		chars_printed += _putchar(87 + num % 16);
 	else
-		c = a + '0';
-	if (b == 0)
-	{
-		return (_putchar(c));
-	}
-	if (b < hex)
-	{
-		if (b > 10)
-			return (_putchar(b - 10 + alpha) + _putchar(c));
-		return (_putchar(b + '0') + _putchar(c));
-	}
-	return (_hex_str(b, hex, alpha) + _putchar(c));
+		chars_printed += _putchar(55 + num % 16);
+	return (chars_printed);
 }
 
 /**
- * _hex_l - printing lower case hexa
- * @list: argument recieved
- * Return: no of char printed
+ * print_odh - prints a number in its octal, decimal or hex representation
+ *
+ * @c: type to be converted into
+ * @num: number to be converted
+ * Return: characters printed
  */
-int _hex_l(va_list list)
+int print_odh(char c, unsigned int num)
 {
-	return (_hex_str(va_arg(list, unsigned int), 16, 'a'));
-}
+	int chars_printed = 0;
 
-/**
- * _hex_u - printing upper case hexa
- * @list: argument recieved
- * Return: no. of char printed
- */
+	if (c == 'u')
+		chars_printed += print_num(num);
+	else if (c == 'o' && num == 0)
+		chars_printed = print_string("00");
+	else if (c == 'o')
 
-int _hex_u(va_list list)
-{
-	return (_hex_str(va_arg(list, unsigned int), 16, 'A'));
-}
-
-/**
- * print_r - prints a string in reverse
- * @list:list to increment
- * Return:no. of charcters printed
- */
-
-int print_r(va_list list)
-{
-	char *s = va_arg(list, char *);
-	int i, c;
-
-	if (s == NULL)
-		s = ")llun(";
-	i = 0;
-	while (s[i])
-	{
-		i++;
-	}
-	i--;
-	for (; i >= 0; i--)
-	{
-		_putchar(s[i]);
-		c++;
-	}
-	return (i);
-}
