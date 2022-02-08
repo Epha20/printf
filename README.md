@@ -1,15 +1,2 @@
-Printf
-Objective:Recreate the C library printf
-Requirements:
-Files should be compiled with gcc 4.8.4
-No more than 5 functions per file
-Files should end with a new line
-No global variables allowed
-_printf
-this function prints an individual character (similar to standard library printf)
-printf
-The core function where the buffer is defined and freed. All other functions are called from here
-main.h
-Header file that contains prototypes for all the functions and a struct holding a function and a character
-man_3_printf
-Custom man page Create a man page for your function.
+
+This Repo has has all the code necessary for our (IBRAHIM MORKETA and rediet abdisa) custom function called _printf(). It is a mini-version of C Language function printf() from stdio.h, and our function _printf() attempts to replicate the exact same process as the C function printf(). This project was completed as a part of the curriculum for a software development program
